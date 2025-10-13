@@ -1,0 +1,58 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f1f5f9;
+  font-family: sans-serif;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* لینک‌ها به عنوان کارت */
+.cards a.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 100px;
+  width: 250px;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;  /* حذف زیرخط لینک */
+  cursor: pointer;
+  transition: transform 0.4s, filter 0.4s;
+}
+
+/* رنگ‌ها */
+.cards .red { background-color: #f43f5e; }
+.cards .blue { background-color: #3b82f6; }
+.cards .green { background-color: #22c55e; }
+
+.cards a.card p.tip {
+  font-size: 1em;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cards a.card p.second-text {
+  font-size: 0.8em;
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* افکت‌ها */
+.cards a.card:hover {
+  transform: scale(1.1);
+}
+
+.cards:hover > a.card:not(:hover) {
+  filter: blur(8px);
+  transform: scale(0.9);
+}
