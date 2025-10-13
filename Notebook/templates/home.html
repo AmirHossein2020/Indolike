@@ -1,22 +1,39 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <body>
+    {% if user.is_authenticated %}
     <div class="cards">
 
-        <a href="" class="card red">
-        <p class="tip">Hover Me</p>
+        <a href="{% url 'notebook' %}" class="card red">
+        <p class="tip">Notebook</p>
         <p class="second-text">Lorem Ipsum</p>
 
 
-        <a href="" class="card blue">
-        <p class="tip">Hover Me</p>
+        <a href="{% url 'note_list' %}" class="card blue">
+        <p class="tip">List Notes</p>
         <p class="second-text">Lorem Ipsum</p>
 
 
-        <a href="" class="card green">
-        <p class="tip">Hover Me</p>
+        <a href="{% url 'logout' %}" class="card green">
+        <p class="tip">Logout</p>
         <p class="second-text">Lorem Ipsum</p>
 
-</div>
+    </div>
+    {% else %}
+    <div class="cards">
+
+        <a href="{% url 'login' %}" class="card login">
+        <p class="tip">Login</p>
+        <p class="second-text">Lorem Ipsum</p>
+
+
+        <a href="" class="card singup">
+        <p class="tip">Sing Up</p>
+        <p class="second-text">Lorem Ipsum</p>
+
+
+    </div>
+    {% endif %}
+    
 
 </body>

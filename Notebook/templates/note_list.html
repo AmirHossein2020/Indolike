@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>list notes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+    <h1 class="text-center mb-4">📒 List My Note</h1>
+
+    <div class="row">
+        {% for note in notes %}
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm">
+                {% if note.image %}
+                <img src="{{ note.image.url }}" class="card-img-top" alt="{{ note.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ note.title }}</h5>
+                    <p class="card-text">{{ note.text|truncatewords:20 }}</p>
+                </div>
+                <div class="card-footer text-muted small">
+                    {{ note.created_at|date:"Y/m/d H:i" }}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">یادداشتی وجود ندارد.</p>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

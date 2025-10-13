@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new note</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f6f5f2;
+            font-family: "Vazirmatn", sans-serif;
+        }
+        .notebook {
+            background: #fff url('https://www.transparenttextures.com/patterns/lined-paper-2.png');
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 60px auto;
+            position: relative;
+        }
+        .notebook::before {
+            content: "";
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        textarea.form-control {
+            background: transparent;
+            border: none;
+            border-left: 3px solid #ddd;
+            border-radius: 0;
+            resize: none;
+            min-height: 180px;
+            line-height: 2.2;
+            font-size: 1.1rem;
+        }
+        textarea.form-control:focus, input.form-control:focus {
+            box-shadow: none;
+            border-color: #0d6efd;
+        }
+        .form-label {
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        .btn-save {
+            background: #0d6efd;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+        .btn-save:hover {
+            background: #084ec0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="notebook">
+    <h1>✍️ New Note</h1>
+
+    <form method="POST" enctype="multipart/form-data" class="needs-validation">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_title" class="form-label">Title</label>
+            {{ form.title }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_text" class="form-label">Note text</label>
+            {{ form.text }}
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="id_image" class="form-label">📸 Image (optional)</label>
+                {{ form.image }}
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="id_filenotebook" class="form-label">📎 Attachment (optional)</label>
+                {{ form.filenotebook }}
+            </div>
+        </div>
+
+        
+
+        <button type="submit" class="btn btn-save w-100 mt-3">Save</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -14,7 +14,7 @@ body {
   gap: 15px;
 }
 
-/* لینک‌ها به عنوان کارت */
+
 .cards a.card {
   display: flex;
   align-items: center;
@@ -25,15 +25,17 @@ body {
   width: 250px;
   border-radius: 10px;
   color: white;
-  text-decoration: none;  /* حذف زیرخط لینک */
+  text-decoration: none;  
   cursor: pointer;
   transition: transform 0.4s, filter 0.4s;
 }
 
-/* رنگ‌ها */
+
 .cards .red { background-color: #f43f5e; }
 .cards .blue { background-color: #3b82f6; }
 .cards .green { background-color: #22c55e; }
+.cards .login { background-color: #3f919e; }
+.cards .singup { background-color: #3f499e; }
 
 .cards a.card p.tip {
   font-size: 1em;
@@ -47,7 +49,7 @@ body {
   opacity: 0.85;
 }
 
-/* افکت‌ها */
+
 .cards a.card:hover {
   transform: scale(1.1);
 }
