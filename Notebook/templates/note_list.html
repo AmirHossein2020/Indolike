@@ -1,33 +1,115 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>list notes</title>
+    <title>📒 My notes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #fdfcf8;
+            font-family: "Vazirmatn", sans-serif;
+        }
+        .note-card {
+            border-radius: 16px;
+            background: #fffef9;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .note-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .note-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        .note-text {
+            color: #555;
+            font-size: 0.9rem;
+        }
+        .note-footer {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .add-btn {
+            background: linear-gradient(135deg, #f9d423, #ff4e50);
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 20px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .add-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+        .card-img-top {
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+        }
+        .action-btns a {
+            font-size: 0.85rem;
+            margin-right: 8px;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body>
 
 <div class="container py-5">
-    <h1 class="text-center mb-4">📒 List My Note</h1>
+
+    <div class="top-bar">
+        <h2>📓 My Note</h2>
+        <a href="{% url 'notebook' %}" class="add-btn">➕ New note</a>
+        <a href="{% url 'home' %}" class="add-btn">Home</a>
+
+    </div>
+    
 
     <div class="row">
         {% for note in notes %}
-        <div class="col-md-4 mb-3">
-            <div class="card h-100 shadow-sm">
+        <div class="col-md-4 mb-4">
+            <div class="note-card h-100 shadow-sm">
+
                 {% if note.image %}
-                <img src="{{ note.image.url }}" class="card-img-top" alt="{{ note.title }}">
+                <a href="{% url 'note_detail' note.pk %}">
+                    <img src="{{ note.image.url }}" class="card-img-top" alt="{{ note.title }}">
+                </a>
                 {% endif %}
+
                 <div class="card-body">
-                    <h5 class="card-title">{{ note.title }}</h5>
-                    <p class="card-text">{{ note.text|truncatewords:20 }}</p>
+                    <a href="{% url 'note_detail' note.pk %}" class="text-decoration-none text-dark">
+                        <h5 class="note-title">{{ note.title }}</h5>
+                        <p class="note-text">{{ note.text|truncatewords:20 }}</p>
+                    </a>
+
+                    <div class="action-btns mt-3">
+                        <a href="{% url 'note_edit' note.pk %}" class="btn btn-sm btn-outline-primary">✏️ Edit</a>
+                        <a href="{% url 'note_delete' note.pk %}" class="btn btn-sm btn-outline-danger">🗑 Delete</a>
+                    </div>
                 </div>
-                <div class="card-footer text-muted small">
-                    {{ note.created_at|date:"Y/m/d H:i" }}
+
+                <div class="card-footer note-footer text-muted">
+                    📅 {{ note.created_at|date:"Y/m/d" }}
                 </div>
             </div>
         </div>
         {% empty %}
-        <p class="text-center">یادداشتی وجود ندارد.</p>
+        <div class="text-center mt-5">
+            <p>You haven't created a note yet 📝</p>
+            <a href="{% url 'notebook' %}" class="btn btn-warning">Add new note</a>
+        </div>
         {% endfor %}
     </div>
 </div>

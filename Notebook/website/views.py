@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
-from .forms import NbookForm
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Nbook
+from .forms import NbookForm
+
 # Create your views here.
 
 def home(request):
@@ -23,3 +25,35 @@ def create_note(request):
 
     return render(request, 'create_note.html', {'form': form})
 
+
+
+
+
+@login_required
+def note_detail(request, pk):
+    note = get_object_or_404(Nbook, pk=pk, user=request.user)
+    return render(request, 'note_detail.html', {'note': note})
+
+
+
+
+@login_required
+def note_edit(request, pk):
+    note = get_object_or_404(Nbook, pk=pk, user=request.user)
+    if request.method == 'POST':
+        form = NbookForm(request.POST, request.FILES, instance=note)
+        if form.is_valid():
+            form.save()
+            return redirect('note_detail', pk=note.pk)
+    else:
+        form = NbookForm(instance=note)
+    return render(request, 'note_edit.html', {'form': form, 'note': note})
+
+
+@login_required
+def note_delete(request, pk):
+    note = get_object_or_404(Nbook, pk=pk, user=request.user)
+    if request.method == 'POST':
+        note.delete()
+        return redirect('note_list')
+    return render(request, 'note_confirm_delete.html', {'note': note})

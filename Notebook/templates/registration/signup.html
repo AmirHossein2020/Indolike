@@ -1,0 +1,169 @@
+{% load static %}
+{% load form_tags %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>signup</title>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #e3f2fd, #edededff);
+      font-family: "Vazirmatn", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      direction: rtl;
+    }
+
+    .modern-form {
+      width: 380px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      text-align: center;
+    }
+
+    .form-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1565c0;
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      color: #90a4ae;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 40px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    .form-input:focus {
+      border-color: #1565c0;
+      box-shadow: 0 0 5px rgba(21, 101, 192, 0.3);
+      outline: none;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #1565c0, #1e88e5);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: 0.3s;
+    }
+
+    .submit-button:hover {
+      background: linear-gradient(90deg, #1e88e5, #42a5f5);
+    }
+
+    .form-footer {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .form-footer a {
+      color: #1565c0;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<form method="POST" enctype="multipart/form-data" class="modern-form">
+  {% csrf_token %}
+  <div class="form-title">Sing Up</div>
+
+  <div class="input-group">
+    <div class="input-wrapper">
+      <svg fill="none" viewBox="0 0 24 24" class="input-icon">
+        <circle stroke-width="1.5" stroke="currentColor" r="4" cy="8" cx="12"></circle>
+        <path stroke-linecap="round" stroke-width="1.5" stroke="currentColor"
+              d="M5 20C5 17.2386 8.134 15 12 15s7 2.2386 7 5"></path>
+      </svg>
+      {{ form.username|add_class:"form-input" }}
+    </div>
+  </div>
+
+  <div class="input-group">
+    <div class="input-wrapper">
+      <svg fill="none" viewBox="0 0 24 24" class="input-icon">
+        <path stroke-width="1.5" stroke="currentColor"
+              d="M3 8l8.9 5.26a1.5 1.5 0 001.2 0L22 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+      </svg>
+      <input name="name" type="text" placeholder="Name" class="form-input" value="{{ form.name.value|default_if_none:'' }}">
+    </div>
+  </div>
+
+  <br>
+
+  <div class="input-group">
+    <div class="input-wrapper">
+      <svg fill="none" viewBox="0 0 24 24" class="input-icon">
+        <path stroke-width="1.5" stroke="currentColor"
+              d="M12 10v4M8 6h8a2 2 0 012 2v8a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2z"></path>
+      </svg>
+      {{ form.password1|add_class:"form-input" }}
+    </div>
+  </div>
+
+  <div class="input-group">
+    <div class="input-wrapper">
+      {{ form.password2|add_class:"form-input" }}
+    </div>
+  </div>
+
+  <button type="submit" class="submit-button">SingUp</button>
+
+  <div class="form-footer">
+    Do you already have an account?<a href="{% url 'login' %}">Login</a>
+  </div>
+</form>
+
+</body>
+</html>
