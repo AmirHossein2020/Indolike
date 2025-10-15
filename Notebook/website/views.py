@@ -10,7 +10,7 @@ def home(request):
 
 def note_list(request):
     notes = Nbook.objects.filter(user=request.user)
-    return render(request, 'note_list.html', {'notes': notes})
+    return render(request, 'Notes/note_list.html', {'notes': notes})
 
 def create_note(request):
     if request.method == 'POST':
@@ -23,7 +23,7 @@ def create_note(request):
     else:
         form = NbookForm()
 
-    return render(request, 'create_note.html', {'form': form})
+    return render(request, 'Notes/create_note.html', {'form': form})
 
 
 
@@ -32,7 +32,7 @@ def create_note(request):
 @login_required
 def note_detail(request, pk):
     note = get_object_or_404(Nbook, pk=pk, user=request.user)
-    return render(request, 'note_detail.html', {'note': note})
+    return render(request, 'Notes/note_detail.html', {'note': note})
 
 
 
@@ -44,10 +44,10 @@ def note_edit(request, pk):
         form = NbookForm(request.POST, request.FILES, instance=note)
         if form.is_valid():
             form.save()
-            return redirect('note_detail', pk=note.pk)
+            return redirect('Notes/note_detail', pk=note.pk)
     else:
         form = NbookForm(instance=note)
-    return render(request, 'note_edit.html', {'form': form, 'note': note})
+    return render(request, 'Notes/note_edit.html', {'form': form, 'note': note})
 
 
 @login_required
@@ -56,4 +56,4 @@ def note_delete(request, pk):
     if request.method == 'POST':
         note.delete()
         return redirect('note_list')
-    return render(request, 'note_confirm_delete.html', {'note': note})
+    return render(request, 'Notes/note_delete.html', {'note': note})

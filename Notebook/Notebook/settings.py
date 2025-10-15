@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website',
     'accounts',
+    'shortener',
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
