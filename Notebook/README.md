@@ -72,6 +72,3 @@ The frontend is implemented using **HTML** and **CSS**, providing a clean and mi
 | File Handling | Django File Storage |
 | URL Shortener | Custom Django App |
 
----
-
-## 🧩 Project Structure
