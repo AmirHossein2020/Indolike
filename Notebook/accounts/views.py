@@ -4,6 +4,7 @@ from .forms import SignupForm
 # Create your views here.
 
 
+# This view handles user signup, including form display and processing.
 def signup_view(request):
     if request.method == 'POST':
         form = SignupForm(request.POST, request.FILES)

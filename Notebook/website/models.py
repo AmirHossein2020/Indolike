@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import CustomUser
 
+# The Nbook model represents a note with optional image and file attachments, linked to a user.
 class Nbook(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='notes')
     title = models.CharField(max_length=250)

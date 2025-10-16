@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.crypto import get_random_string
 
+# The ShortURL model stores original URLs and their corresponding short codes.
 class ShortURL(models.Model):
     original_url = models.URLField(unique=True)
     short_code = models.CharField(max_length=10, unique=True, blank=True)

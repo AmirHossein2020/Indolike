@@ -3,6 +3,7 @@ from .models import ShortURL
 from django.shortcuts import get_object_or_404
 from django.utils.crypto import get_random_string
 
+# This view handles URL shortening requests and redirects short URLs to their original destinations.
 def shorten_url_api(request):
     original_url = request.GET.get("url")
     if not original_url:
@@ -13,6 +14,7 @@ def shorten_url_api(request):
     return JsonResponse({"short_url": short_url})
 
 
+# This view redirects a short URL to its original URL.
 def redirect_short_url(request, short_code):
     obj = get_object_or_404(ShortURL, short_code=short_code)
     return HttpResponseRedirect(obj.original_url)

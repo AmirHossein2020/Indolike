@@ -12,6 +12,7 @@ def note_list(request):
     notes = Nbook.objects.filter(user=request.user)
     return render(request, 'Notes/note_list.html', {'notes': notes})
 
+# This view handles both displaying the form and processing form submissions and file uploads.
 def create_note(request):
     if request.method == 'POST':
         form = NbookForm(request.POST, request.FILES)
@@ -26,17 +27,14 @@ def create_note(request):
     return render(request, 'Notes/create_note.html', {'form': form})
 
 
-
-
-
+# This view for displaying note details and ensures only the owner can access it.
 @login_required
 def note_detail(request, pk):
     note = get_object_or_404(Nbook, pk=pk, user=request.user)
     return render(request, 'Notes/note_detail.html', {'note': note})
 
 
-
-
+# This view handles editing notes, including file uploads, and ensures only the owner can edit.
 @login_required
 def note_edit(request, pk):
     note = get_object_or_404(Nbook, pk=pk, user=request.user)
@@ -50,6 +48,7 @@ def note_edit(request, pk):
     return render(request, 'Notes/note_edit.html', {'form': form, 'note': note})
 
 
+# This view handles note deletion and ensures only the owner can delete.
 @login_required
 def note_delete(request, pk):
     note = get_object_or_404(Nbook, pk=pk, user=request.user)
