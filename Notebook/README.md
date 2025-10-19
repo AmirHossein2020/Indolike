@@ -1,3 +1,7 @@
+
+https://github.com/user-attachments/assets/753f3deb-fb9d-45d8-9b88-3c0691edab83
+
+
 # 🗒️ Online Notebook
 
 A simple **online notebook web app** built with **Django** and **Django REST Framework**, featuring user authentication, note management (CRUD), file & image upload, and URL shortening.  
@@ -68,6 +72,3 @@ The frontend is implemented using **HTML** and **CSS**, providing a clean and mi
 | File Handling | Django File Storage |
 | URL Shortener | Custom Django App |
 
----
-
-## 🧩 Project Structure
