@@ -92,3 +92,199 @@ body {
   color: #888;
   margin-top: 3rem;
 }
+.showtime-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.showtime-card {
+  background: #1a1a1a;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.showtime-card:hover {
+  transform: translateY(-5px);
+}
+
+.showtime-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.btn-reserve {
+  background-color: #e50914;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.btn-reserve:hover {
+  background-color: #b0060f;
+}
+
+.reserve-page {
+  text-align: center;
+  color: #fff;
+  background-color: #121212;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 10px;
+  justify-content: center;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.seat {
+  border-radius: 8px;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.seat.available {
+  background-color: #1f1f1f;
+}
+
+.seat.available:hover {
+  background-color: #444;
+}
+
+.seat.selected {
+  background-color: #e50914;
+}
+
+.seat.booked {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.btn-confirm {
+  background-color: #e50914;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-confirm:hover {
+  background-color: #b0060f;
+}
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #0d0d0d;
+  color: #fff;
+}
+
+.home-container {
+  padding: 40px 60px;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  color: #e50914;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.movie-card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.4);
+}
+
+.movie-image-container {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+}
+
+.movie-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.movie-card:hover .movie-image {
+  transform: scale(1.08);
+}
+
+.movie-info {
+  padding: 15px;
+}
+
+.movie-title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.movie-description {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin: 10px 0;
+  min-height: 60px;
+}
+
+.movie-meta {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.btn-reserve {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-reserve:hover {
+  background-color: #b0060f;
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: 20px;
+  }
+  .movie-image-container {
+    height: 250px;
+  }
+}

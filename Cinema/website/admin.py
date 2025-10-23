@@ -9,3 +9,5 @@ admin.site.register(Hall)
 admin.site.register(ShowTime)
 admin.site.register(Seat)
 admin.site.register(Booking)
+
+

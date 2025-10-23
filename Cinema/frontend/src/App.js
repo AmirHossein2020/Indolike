@@ -6,6 +6,9 @@ import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import News from "./pages/News";
 import About from "./pages/About";
+import ReservePage from "./pages/ReservePage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import "./App.css";
 
 function App() {
@@ -19,6 +22,10 @@ function App() {
             <Route path="/movies" element={<Movies />} />
             <Route path="/news" element={<News />} />
             <Route path="/about" element={<About />} />
+            <Route path="/reserve/:showtimeId" element={<ReservePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
           </Routes>
         </main>
         <Footer />
