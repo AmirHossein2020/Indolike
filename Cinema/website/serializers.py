@@ -37,12 +37,18 @@ class ShowTimeSerializer(serializers.ModelSerializer):
 
 
 class SeatSerializer(serializers.ModelSerializer):
-    hall = HallSerializer(read_only=True)
+    is_reserved = serializers.SerializerMethodField()
 
     class Meta:
         model = Seat
-        fields = '__all__'
+        fields = ['id', 'row', 'number', 'hall', 'is_reserved']
 
+    def get_is_reserved(self, obj):
+        showtime_id = self.context.get('showtime_id')
+        if not showtime_id:
+            return False
+     
+        return Booking.objects.filter(seat=obj, showtime_id=showtime_id).exists()
 
 class BookingSerializer(serializers.ModelSerializer):
     showtime = ShowTimeSerializer(read_only=True)

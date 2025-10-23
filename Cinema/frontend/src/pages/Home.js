@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Home.css"; // حتما CSS مناسب برای grid و cardها بساز
+import "./Home.css"; 
 
 function Home() {
   const [showtimes, setShowtimes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); // برای ناوبری در React Router v6
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/showtimes/")

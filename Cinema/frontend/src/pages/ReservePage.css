@@ -68,3 +68,48 @@
 .seat.selected {
   background-color: #52c41a;
 }
+.reserve-container {
+  padding: 20px;
+}
+
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 40px);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.seat.reserved {
+  background-color: crimson;
+  cursor: not-allowed;
+}
+
+.seat.selected {
+  background-color: greenyellow;
+}
+
+.reserve-btn {
+  padding: 10px 20px;
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reserve-btn:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}

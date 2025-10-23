@@ -58,8 +58,12 @@ class SeatListView(generics.ListAPIView):
         showtime_id = self.kwargs['showtime_id']
         showtime = ShowTime.objects.get(id=showtime_id)
         return Seat.objects.filter(hall=showtime.hall).order_by('row', 'number')
-    
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['showtime_id'] = self.kwargs['showtime_id']
+        return context
+    
 class ReserveSeatView(APIView):
     permission_classes = [IsAuthenticated]
 
