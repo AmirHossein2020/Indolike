@@ -1,17 +1,30 @@
 from rest_framework import serializers
-from .models import Movie, OnlineMovie, Cinema, Hall, ShowTime, Seat, Booking
+from .models import *
 
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = '__all__'
+        fields = ['id', 'name', 'description', 'image', 'duration', 'release_date']
 
 
 class OnlineMovieSerializer(serializers.ModelSerializer):
     movie = MovieSerializer(read_only=True)
+
     class Meta:
         model = OnlineMovie
-        fields = '__all__'
+        fields = ['id', 'movie', 'price', 'video_file']
+
+        
+    def get_purchased(self, obj):
+        user = self.context.get('request').user
+        if user.is_authenticated:
+            return OnlinePurchase.objects.filter(user=user, online_movie=obj).exists()
+        return False
+
+class OnlinePurchaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OnlinePurchase
+        fields = ['id', 'user', 'online_movie', 'purchased_at']
 
 
 class CinemaSerializer(serializers.ModelSerializer):
@@ -57,3 +70,12 @@ class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
         fields = '__all__'
+
+class CartItemSerializer(serializers.ModelSerializer):
+    movie_name = serializers.CharField(source='online_movie.movie.name', read_only=True)
+    price = serializers.DecimalField(source='online_movie.price', max_digits=10, decimal_places=2, read_only=True)
+    image = serializers.ImageField(source='online_movie.movie.image', read_only=True)
+
+    class Meta:
+        model = CartItem
+        fields = ['id', 'movie_name', 'price', 'image', 'added_at', 'online_movie']

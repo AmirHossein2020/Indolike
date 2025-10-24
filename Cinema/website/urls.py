@@ -1,9 +1,13 @@
 from django.urls import path, include
-from rest_framework import routers
+from rest_framework import routers 
+from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from . import views
-from website.views import SeatListView, ReserveSeatView  
+from website.views import * 
+
+router = DefaultRouter()
+router.register('online-movies', OnlineMovieViewSet, basename='online-movie')
 
 
 router = routers.DefaultRouter()
@@ -23,4 +27,8 @@ urlpatterns = [
     path('api/reserve-seat/', ReserveSeatView.as_view(), name='reserve-seat'),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/cart/', CartListView.as_view(), name='cart-list'),
+    path('api/cart/add/<int:movie_id>/', AddToCartView.as_view(), name='cart-add'),
+    path('api/cart/remove/<int:movie_id>/', RemoveFromCartView.as_view(), name='cart-remove'),
+    path('api/cart/checkout/', CheckoutView.as_view(), name='cart-checkout'),
 ]

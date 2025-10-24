@@ -10,6 +10,12 @@ import ReservePage from "./pages/ReservePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import "./App.css";
+import OnlineMovies from "./pages/OnlineMovies";
+import Cart from "./pages/Cart";
+
+
+
+
 
 function App() {
   return (
@@ -25,6 +31,10 @@ function App() {
             <Route path="/reserve/:showtimeId" element={<ReservePage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/online-movies" element={<OnlineMovies />} />
+            <Route path="/cart" element={<Cart />} />
+
+
 
           </Routes>
         </main>
