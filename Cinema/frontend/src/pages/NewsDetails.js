@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./NewsDetails.css";
+import "./Css/NewsDetails.css";
 
 function NewsDetails() {
   const { blogId } = useParams();
@@ -15,23 +15,22 @@ function NewsDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch blog details
+
         const blogRes = await fetch(`http://127.0.0.1:8000/api/blogs/${blogId}/`);
         const blogData = await blogRes.json();
         setBlog(blogData);
 
-        // Fetch posts
+
         const postsRes = await fetch(`http://127.0.0.1:8000/api/posts/?blog=${blogId}`);
         const postsData = await postsRes.json();
         setPosts(postsData);
 
-        // Fetch comments
         const commentsRes = await fetch(`http://127.0.0.1:8000/api/posts/${blogId}/comments/`);
         const commentsData = await commentsRes.json();
         setComments(commentsData);
       } catch (err) {
         console.error("Error fetching blog details:", err);
-        setError("خطا در دریافت اطلاعات از سرور");
+        setError("Error retrieving information from server");
       } finally {
         setLoading(false);
       }
@@ -40,11 +39,11 @@ function NewsDetails() {
     fetchData();
   }, [blogId]);
 
-  // ارسال کامنت جدید
+  
   async function handleCommentSubmit(e) {
     e.preventDefault();
     if (!token) {
-      alert("لطفا ابتدا وارد شوید.");
+      alert("Please come in first.");
       return;
     }
     if (!commentText.trim()) return;
@@ -61,7 +60,7 @@ function NewsDetails() {
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.detail || "خطا در ارسال نظر");
+        throw new Error(data.detail || "Error sending comment");
       }
 
       const newComment = await res.json();
@@ -72,13 +71,12 @@ function NewsDetails() {
     }
   }
 
-  if (loading) return <p className="loading">در حال بارگذاری...</p>;
+  if (loading) return <p className="loading">Loading...</p>;
   if (error) return <p className="error">{error}</p>;
-  if (!blog) return <p>خبر پیدا نشد.</p>;
+  if (!blog) return <p>News not found.</p>;
 
   return (
     <div className="news-details">
-      {/* --- Blog Section --- */}
       <div className="blog-header">
         <img
           src={blog.image || "https://via.placeholder.com/600x300?text=No+Image"}
@@ -92,12 +90,11 @@ function NewsDetails() {
       </div>
 
       
-      {/* --- Related Posts --- */}
         <div className="posts-section">
-        <h2>🎬 پست‌های مرتبط</h2>
+        <h2>🎬Related Posts</h2>
         <div className="posts-grid">
             {posts.length === 0 ? (
-            <p className="no-posts">پستی برای این خبر وجود ندارد.</p>
+            <p className="no-posts">There are no posts for this news.</p>
             ) : (
             posts.map((post) => (
                 <div className="post-card adaptive" key={post.id}>
@@ -119,34 +116,33 @@ function NewsDetails() {
         </div>
         </div>
 
-      {/* --- Comments Section --- */}
       <div className="comments-section">
-        <h2>💬 بخش نظرات</h2>
+        <h2>💬 Comments section</h2>
 
         {token ? (
           <form onSubmit={handleCommentSubmit} className="comment-form">
             <textarea
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
-              placeholder="نظر خود را بنویسید..."
+              placeholder="Write your comment..."
               required
             />
             <button type="submit" className="btn-submit">
-              ارسال نظر
+              Post a comment
             </button>
           </form>
         ) : (
-          <p className="login-alert">برای ارسال نظر ابتدا وارد شوید.</p>
+          <p className="login-alert">Log in first to post a comment.</p>
         )}
 
         <div className="comments-list">
           {comments.length === 0 ? (
-            <p>نظری برای این خبر ثبت نشده است.</p>
+            <p>There are no comments for this news.</p>
           ) : (
             comments.map((c) => (
               <div className="comment-card" key={c.id}>
                 <div className="comment-header">
-                  <strong>{c.username || "کاربر ناشناس"}</strong>
+                  <strong>{c.username || "Anonymous user"}</strong>
                   <span className="comment-date">
                     {c.date_created
                       ? new Date(c.date_created).toLocaleString("fa-IR")

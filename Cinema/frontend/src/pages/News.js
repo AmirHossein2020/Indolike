@@ -1,7 +1,6 @@
-// src/pages/News.js
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./News.css";
+import "./Css/News.css";
 
 function News() {
   const [blogs, setBlogs] = useState([]);
@@ -21,12 +20,12 @@ function News() {
       });
   }, []);
 
-  if (loading) return <p>در حال بارگذاری اخبار...</p>;
-  if (blogs.length === 0) return <p>هیچ خبری موجود نیست.</p>;
+  if (loading) return <p>Loading news...</p>;
+  if (blogs.length === 0) return <p>There is no news available.</p>;
 
   return (
     <div className="news-container">
-      <h1 className="page-title">📰 آخرین اخبار و مقالات</h1>
+      <h1 className="page-title">📰Latest news and articles</h1>
       <div className="blog-grid">
         {blogs.map((blog) => (
           <div key={blog.id} className="blog-card">
@@ -48,7 +47,7 @@ function News() {
                 className="btn-details"
                 onClick={() => navigate(`/news/${blog.id}`)}
               >
-                جزئیات
+                Details
               </button>
             </div>
           </div>

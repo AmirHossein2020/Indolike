@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'website',
     'accounts',
     'Blog',
+    'cart',
 ]
 
 REST_FRAMEWORK = {
@@ -52,7 +53,7 @@ REST_FRAMEWORK = {
 }
 
 
-# Optional: تنظیم زمان انقضا
+
 from datetime import timedelta
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),

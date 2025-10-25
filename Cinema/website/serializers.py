@@ -1,6 +1,19 @@
 from rest_framework import serializers
 from .models import *
+from cart.models import *
 
+class AboutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = About
+        fields = '__all__'
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = '__all__'
+
+        
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
@@ -71,11 +84,3 @@ class BookingSerializer(serializers.ModelSerializer):
         model = Booking
         fields = '__all__'
 
-class CartItemSerializer(serializers.ModelSerializer):
-    movie_name = serializers.CharField(source='online_movie.movie.name', read_only=True)
-    price = serializers.DecimalField(source='online_movie.price', max_digits=10, decimal_places=2, read_only=True)
-    image = serializers.ImageField(source='online_movie.movie.image', read_only=True)
-
-    class Meta:
-        model = CartItem
-        fields = ['id', 'movie_name', 'price', 'image', 'added_at', 'online_movie']

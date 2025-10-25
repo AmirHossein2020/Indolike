@@ -1,8 +1,10 @@
 from django.contrib import admin
-from .models import Movie, OnlineMovie, Cinema, Hall, ShowTime, Seat, Booking
+from .models import *
 # Register your models here.
 
 admin.site.register(Movie)
+admin.site.register(About)
+admin.site.register(Contact)
 admin.site.register(OnlineMovie)
 admin.site.register(Cinema)
 admin.site.register(Hall)

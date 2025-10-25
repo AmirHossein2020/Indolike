@@ -13,7 +13,7 @@ import "./App.css";
 import OnlineMovies from "./pages/OnlineMovies";
 import Cart from "./pages/Cart";
 import NewsDetails from "./pages/NewsDetails";
-
+import Contact from "./pages/Contact";
 
 
 
@@ -26,6 +26,7 @@ function App() {
         <main className="content">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/movies" element={<Movies />} />
             <Route path="/news" element={<News />} />
             <Route path="/news/:blogId" element={<NewsDetails />} />

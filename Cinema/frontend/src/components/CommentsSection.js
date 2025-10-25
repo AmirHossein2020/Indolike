@@ -1,6 +1,5 @@
-// src/components/CommentsSection.js
 import React, { useState } from "react";
-import "./CommentsSection.css";
+import "./Css/CommentsSection.css";
 
 export default function CommentsSection({ comments, postId, onNewComment }) {
   const [commentContent, setCommentContent] = useState("");

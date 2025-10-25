@@ -1,6 +1,23 @@
 from django.db import models
 from accounts.models import CustomUser as User
 
+class About(models.Model):
+    description = models.TextField()
+    address = models.CharField(max_length=255)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.address
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
 
 class Movie(models.Model):
     name = models.CharField(max_length=100)
@@ -75,25 +92,3 @@ class Booking(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.showtime} - Seat {self.seat}"
 
-class OnlinePurchase(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='purchases')
-    online_movie = models.ForeignKey(OnlineMovie, on_delete=models.CASCADE, related_name='purchases')
-    purchased_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        unique_together = ('user', 'online_movie')
-
-    def __str__(self):
-        return f"{self.user.username} bought {self.online_movie.movie.name}"
-
-
-class CartItem(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="cart_items")
-    online_movie = models.ForeignKey(OnlineMovie, on_delete=models.CASCADE)
-    added_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        unique_together = ('user', 'online_movie')
-
-    def __str__(self):
-        return f"{self.user.username} - {self.online_movie.movie.name}"

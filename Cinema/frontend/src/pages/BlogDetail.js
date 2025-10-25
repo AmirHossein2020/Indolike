@@ -1,7 +1,7 @@
 // src/pages/BlogDetail.js
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./BlogDetail.css";
+import "./Css/BlogDetail.css";
 
 function BlogDetail() {
   const { blogId } = useParams();

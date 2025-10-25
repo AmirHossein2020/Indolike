@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./ReservePage.css";
+import "./Css/ReservePage.css";
 
 function ReservePage() {
   const { showtimeId } = useParams();

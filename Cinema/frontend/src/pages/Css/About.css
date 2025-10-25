@@ -1,0 +1,25 @@
+.about-page {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #121212;
+  padding: 2rem;
+  border-radius: 16px;
+  color: #eee;
+}
+
+.about-page h1 {
+  text-align: center;
+  color: #ff3d00;
+  margin-bottom: 1rem;
+}
+
+.about-card {
+  background: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 12px;
+  line-height: 1.8;
+}
+
+.about-card p {
+  margin-bottom: 0.8rem;
+}

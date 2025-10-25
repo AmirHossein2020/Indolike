@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Navbar.css";
+import "./Css/Navbar.css";
 
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,7 +25,7 @@ function Navbar() {
         <li><Link to="/online-movies">Online Movies</Link></li>
         <li><Link to="/news">News</Link></li>
         <li><Link to="/about">About</Link></li>
-
+        <li><Link to="/contact">Contact</Link></li>
         {isLoggedIn ? (
           <>
             <li><Link to="/cart">Cart</Link></li>
@@ -38,7 +38,7 @@ function Navbar() {
         ) : (
           <>
             <li><Link to="/login">Login</Link></li>
-            <li><Link to="/signup">Sign Up</Link></li>
+            <li><Link to="/register">Sign Up</Link></li>
           </>
         )}
       </ul>

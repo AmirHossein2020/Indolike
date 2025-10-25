@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Home.css"; 
+import "./Css/Home.css"; 
 
 function Home() {
   const [showtimes, setShowtimes] = useState([]);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Cart.css";
+import "./Css/Cart.css";
 
 function Cart() {
   const [cart, setCart] = useState([]);
@@ -45,14 +45,14 @@ function Cart() {
   if (cart.length === 0) {
     return (
       <div className="cart-container">
-        <h1>🛒 سبد خرید شما خالی است</h1>
+        <h1>🛒 Your shopping cart is empty.</h1>
       </div>
     );
   }
 
   return (
     <div className="cart-container">
-      <h1 className="page-title">🛒 سبد خرید من</h1>
+      <h1 className="page-title">🛒 My Cart</h1>
       <div className="cart-grid">
         {cart.map((item) => (
           <div key={item.id} className="cart-card">
@@ -67,7 +67,7 @@ function Cart() {
             </div>
             <div className="cart-details">
               <h2>{item.movie?.name}</h2>
-              <p>💰 قیمت: {item.price.toLocaleString()} تومان</p>
+              <p>$ Prise: {item.price.toLocaleString()}</p>
               <div className="quantity-controls">
                 <button onClick={() => decreaseQuantity(item.id)}>➖</button>
                 <span>{item.quantity || 1}</span>
@@ -77,15 +77,15 @@ function Cart() {
                 className="btn-remove"
                 onClick={() => removeFromCart(item.id)}
               >
-                حذف
+               Delete
               </button>
             </div>
           </div>
         ))}
       </div>
       <div className="cart-summary">
-        <h2>جمع کل: {totalPrice.toLocaleString()} تومان</h2>
-        <button className="btn-pay">💳 پرداخت</button>
+        <h2>Total: {totalPrice.toLocaleString()} </h2>
+        <button className="btn-pay">💳 Payment</button>
       </div>
     </div>
   );

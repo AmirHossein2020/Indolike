@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Home.css"; // از همون استایل کارت‌های Home استفاده می‌کنیم
+import "./Css/Home.css"; 
 
 function OnlineMovies() {
   const [movies, setMovies] = useState([]);
@@ -22,22 +22,22 @@ function OnlineMovies() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const exists = cart.find((item) => item.id === movie.id);
     if (exists) {
-      alert("✅ این فیلم قبلاً در سبد خرید شماست!");
+      alert("✅ This movie is already in your cart!");
       return;
     }
     cart.push(movie);
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert("🛒 فیلم به سبد خرید افزوده شد!");
+    alert("🛒 Movie added to cart!");
   };
 
-  if (loading) return <p className="loading">در حال بارگذاری فیلم‌ها...</p>;
+  if (loading) return <p className="loading">Loading videos...</p>;
 
   if (movies.length === 0)
-    return <p className="loading">فیلم آنلاینی در دسترس نیست.</p>;
+    return <p className="loading">No online video available.</p>;
 
   return (
     <div className="home-container">
-      <h1 className="page-title">🎬 فیلم‌های آنلاین برای خرید</h1>
+      <h1 className="page-title">🎬 Online movies to buy</h1>
 
       <div className="movie-grid">
         {movies.map((item) => (
@@ -57,13 +57,13 @@ function OnlineMovies() {
                   ? item.movie.description.slice(0, 80) + "..."
                   : item.movie?.description}
               </p>
-              <p className="movie-meta">💰 قیمت: {item.price} تومان</p>
+              <p className="movie-meta">$ Price: {item.price}</p>
 
               <button
                 className="btn-reserve"
                 onClick={() => addToCart(item)}
               >
-                🛒 افزودن به سبد خرید
+                🛒 Add to cart
               </button>
             </div>
           </div>
