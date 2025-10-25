@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 import "./App.css";
 import OnlineMovies from "./pages/OnlineMovies";
 import Cart from "./pages/Cart";
+import NewsDetails from "./pages/NewsDetails";
 
 
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/movies" element={<Movies />} />
             <Route path="/news" element={<News />} />
+            <Route path="/news/:blogId" element={<NewsDetails />} />
             <Route path="/about" element={<About />} />
             <Route path="/reserve/:showtimeId" element={<ReservePage />} />
             <Route path="/login" element={<Login />} />

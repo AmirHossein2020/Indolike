@@ -1,25 +1,60 @@
-import React from "react";
+// src/pages/News.js
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./News.css";
 
 function News() {
-  const articles = [
-    { title: "New Marvel Movie Announced", date: "Oct 15, 2025" },
-    { title: "Oscar Predictions: Top Contenders", date: "Oct 10, 2025" },
-    { title: "Behind the Scenes of Dune 3", date: "Oct 5, 2025" },
-  ];
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/blogs/")
+      .then((res) => res.json())
+      .then((data) => {
+        setBlogs(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching blogs:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>در حال بارگذاری اخبار...</p>;
+  if (blogs.length === 0) return <p>هیچ خبری موجود نیست.</p>;
 
   return (
-    <section className="news">
-      <h2>Latest News</h2>
-      <div className="news-list">
-        {articles.map((a, i) => (
-          <article key={i} className="news-item">
-            <h3>{a.title}</h3>
-            <span>{a.date}</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </article>
+    <div className="news-container">
+      <h1 className="page-title">📰 آخرین اخبار و مقالات</h1>
+      <div className="blog-grid">
+        {blogs.map((blog) => (
+          <div key={blog.id} className="blog-card">
+            <div className="blog-image-container">
+              <img
+                src={blog.image || "https://via.placeholder.com/200x120?text=No+Image"}
+                alt={blog.name}
+                className="blog-image"
+              />
+            </div>
+            <div className="blog-info">
+              <h2 className="blog-title">{blog.name}</h2>
+              <p className="blog-description">
+                {blog.description.length > 100
+                  ? blog.description.slice(0, 100) + "..."
+                  : blog.description}
+              </p>
+              <button
+                className="btn-details"
+                onClick={() => navigate(`/news/${blog.id}`)}
+              >
+                جزئیات
+              </button>
+            </div>
+          </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }
 

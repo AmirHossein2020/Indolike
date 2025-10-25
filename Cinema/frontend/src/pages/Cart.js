@@ -6,61 +6,87 @@ function Cart() {
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    console.log("🛒 Loaded cart:", savedCart);
     setCart(savedCart);
   }, []);
 
-  const removeFromCart = (id) => {
-    const updatedCart = cart.filter((item) => item.id !== id);
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  const updateCart = (newCart) => {
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
-  const totalPrice = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
+  const increaseQuantity = (id) => {
+    const updated = cart.map((item) =>
+      item.id === id ? { ...item, quantity: (item.quantity || 1) + 1 } : item
+    );
+    updateCart(updated);
+  };
+
+  const decreaseQuantity = (id) => {
+    const updated = cart
+      .map((item) =>
+        item.id === id && (item.quantity || 1) > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+      .filter((item) => (item.quantity || 1) > 0);
+    updateCart(updated);
+  };
+
+  const removeFromCart = (id) => {
+    const updated = cart.filter((item) => item.id !== id);
+    updateCart(updated);
+  };
+
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + Number(item.price || 0) * (item.quantity || 1),
+    0
+  );
+
+  if (cart.length === 0) {
+    return (
+      <div className="cart-container">
+        <h1>🛒 سبد خرید شما خالی است</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="cart-container">
-      <h1 className="page-title">🛍️ سبد خرید من</h1>
-
-      {cart.length === 0 ? (
-        <p className="empty-cart">سبد خرید شما خالی است 🛒</p>
-      ) : (
-        <>
-          <div className="cart-grid">
-            {cart.map((item, index) => (
-              <div key={index} className="cart-card">
-                <div className="cart-image-container">
-                  <img
-                    src={
-                      item.movie?.image ||
-                      "https://placehold.co/200x300?text=No+Image"
-                    }
-                    alt={item.movie?.name}
-                    className="cart-image"
-                  />
-                </div>
-
-                <div className="cart-details">
-                  <h2 className="cart-title">{item.movie?.name}</h2>
-                  <p className="cart-price">💰 {item.price} تومان</p>
-
-                  <button
-                    className="btn-remove"
-                    onClick={() => removeFromCart(item.id)}
-                  >
-                    ❌ حذف از سبد
-                  </button>
-                </div>
+      <h1 className="page-title">🛒 سبد خرید من</h1>
+      <div className="cart-grid">
+        {cart.map((item) => (
+          <div key={item.id} className="cart-card">
+            <div className="cart-image">
+              <img
+                src={
+                  item.movie?.image ||
+                  "https://placehold.co/200x300?text=No+Image"
+                }
+                alt={item.movie?.name}
+              />
+            </div>
+            <div className="cart-details">
+              <h2>{item.movie?.name}</h2>
+              <p>💰 قیمت: {item.price.toLocaleString()} تومان</p>
+              <div className="quantity-controls">
+                <button onClick={() => decreaseQuantity(item.id)}>➖</button>
+                <span>{item.quantity || 1}</span>
+                <button onClick={() => increaseQuantity(item.id)}>➕</button>
               </div>
-            ))}
+              <button
+                className="btn-remove"
+                onClick={() => removeFromCart(item.id)}
+              >
+                حذف
+              </button>
+            </div>
           </div>
-
-          <div className="cart-summary">
-            <h3>جمع کل: {totalPrice.toLocaleString()} تومان</h3>
-            <button className="btn-pay">💳 پرداخت</button>
-          </div>
-        </>
-      )}
+        ))}
+      </div>
+      <div className="cart-summary">
+        <h2>جمع کل: {totalPrice.toLocaleString()} تومان</h2>
+        <button className="btn-pay">💳 پرداخت</button>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,40 @@
+.blog-detail-container {
+  padding: 20px;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.post-card {
+  background: #1e1e1e;
+  color: white;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+.post-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.post-card button {
+  margin-top: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: #ff4b2b;
+  color: white;
+}
+
+.post-card button:hover {
+  background-color: #ff3a1a;
+}
