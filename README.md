@@ -42,7 +42,7 @@ The system also includes **authentication**, **URL shortening**, and **file uplo
 
 ---
 
-## 🎬 Project 2: Indolike — Movie Ticket & Streaming Platform
+## 🎬 Project 2: Cinema — Movie Ticket & Streaming Platform
 
 ### 🎞 Overview
 A full-featured **movie ticket booking and online film purchasing system** built with **React (Frontend)** and **Django REST Framework (Backend)**.  
@@ -81,7 +81,7 @@ It includes a **blog/news section** for movie updates and supports user **commen
 
 ## 🧮 Combined Feature Summary
 
-| Feature | Notebook App | Indolike |
+| Feature | Notebook App | Cinema |
 |----------|---------------|-----------|
 | 🧑‍💻 User Authentication System | ✔ | ✔ |
 | 🔗 URL Shortener | ✔ | ✖ |
@@ -119,11 +119,7 @@ It includes a **blog/news section** for movie updates and supports user **commen
 
 **Author:** Amir Hossein  
 **GitHub:** [AmirHossein2020](https://github.com/AmirHossein2020)  
-**Email:** [your.email@example.com]  
+**Email:** [amirhosseinamjadian2020@gmail.com]  
 **License:** MIT © 2025
 
 ---
-
-### 🏷 Projects:
-- 🗒 [Online Notebook App](#project-1-online-notebook-app)  
-- 🎬 [Indolike – Movie Ticket Platform](#project-2-indolike--movie-ticket--streaming-platform)
