@@ -1,4 +1,4 @@
-# 🎬 Indolike — Movie Ticket & Streaming Platform
+# 🎬 Cinema — Movie Ticket & Streaming Platform
 
 A full-featured web application for **buying movie tickets**, **streaming online films**, and **reading movie news**,  
 built with **React (Frontend)** and **Django REST Framework (Backend)**.
@@ -7,7 +7,7 @@ built with **React (Frontend)** and **Django REST Framework (Backend)**.
 
 ## 🚀 Overview
 
-**Indolike** combines the functionality of an **online cinema ticket booking system**, an **e-commerce movie platform**, and a **movie blog** — all in one place.
+**Cinema** combines the functionality of an **online cinema ticket booking system**, an **e-commerce movie platform**, and a **movie blog** — all in one place.
 
 Users can browse and purchase online movies, book cinema seats, read the latest movie news, and comment on posts.  
 All features are secured with a full authentication system.
