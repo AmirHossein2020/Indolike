@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import CustomUser as User
 
+# This is the website model class that will be used to create a website and its related models
 class About(models.Model):
     description = models.TextField()
     address = models.CharField(max_length=255)
@@ -11,6 +12,7 @@ class About(models.Model):
         return self.address
 
 
+# This is the contact model class that will be used to create a contact
 class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -19,6 +21,8 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
 
+
+# This is the movie model class that will be used to create a movie
 class Movie(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -31,6 +35,7 @@ class Movie(models.Model):
 
 
 
+# This is the online movie model class that will be used to create an online movie
 class OnlineMovie(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='online_versions')
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -40,6 +45,7 @@ class OnlineMovie(models.Model):
         return f"{self.movie.name} (Online)"
 
 
+# This is the cinema model class that will be used to create a cinema
 class Cinema(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=255)
@@ -48,6 +54,7 @@ class Cinema(models.Model):
         return self.name
 
 
+# This is the hall model class that will be used to create a hall
 class Hall(models.Model):
     cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE, related_name='halls')
     name = models.CharField(max_length=100)
@@ -59,6 +66,7 @@ class Hall(models.Model):
 
 
 
+# This is the showtime model class that will be used to create a showtime
 class ShowTime(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='showtimes')
     hall = models.ForeignKey(Hall, on_delete=models.CASCADE, related_name='showtimes')
@@ -69,7 +77,7 @@ class ShowTime(models.Model):
         return f"{self.movie.name} - {self.hall.name} @ {self.start_time}"
 
 
-
+# This is the seat model class that will be used to create a seat
 class Seat(models.Model):
     hall = models.ForeignKey(Hall, on_delete=models.CASCADE, related_name='seats')
     row = models.CharField(max_length=2)
@@ -79,6 +87,7 @@ class Seat(models.Model):
         return f"{self.row}{self.number} ({self.hall.name})"
 
 
+# This is the booking model class that will be used to create a booking
 class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     showtime = models.ForeignKey(ShowTime, on_delete=models.CASCADE, related_name='bookings')

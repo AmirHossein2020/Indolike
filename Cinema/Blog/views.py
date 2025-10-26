@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
+# This is the viewset class that will be used to handle the blog, post, and comment models
 class BlogViewSet(viewsets.ModelViewSet):
     queryset = blog.objects.all().order_by('-date_created')
     serializer_class = BlogSerializer

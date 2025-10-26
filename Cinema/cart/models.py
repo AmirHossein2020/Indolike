@@ -3,6 +3,7 @@ from accounts.models import CustomUser as User
 from website.models import OnlineMovie
 # Create your models here.
 
+# This is the online purchase model class
 class OnlinePurchase(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='purchases')
     online_movie = models.ForeignKey(OnlineMovie, on_delete=models.CASCADE, related_name='purchases')
@@ -15,7 +16,7 @@ class OnlinePurchase(models.Model):
         return f"{self.user.username} bought {self.online_movie.movie.name}"
 
 
-
+# This is the cart item model class 
 class CartItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="cart_items")
     online_movie = models.ForeignKey(OnlineMovie, on_delete=models.CASCADE)

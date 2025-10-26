@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import CustomUser as User
 
+# This is the blog model class that will be used to create a blog
 class blog(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -10,6 +11,8 @@ class blog(models.Model):
     def __str__(self):
         return self.name
     
+
+# This is the post model class that will be used to create a post
 class post(models.Model):
     blog = models.ForeignKey(blog, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
@@ -19,7 +22,9 @@ class post(models.Model):
 
     def __str__(self):
         return self.title
-    
+
+
+# This is the comment model class that will be used to create a comment
 class Comment(models.Model):
     post = models.ForeignKey('post', on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)

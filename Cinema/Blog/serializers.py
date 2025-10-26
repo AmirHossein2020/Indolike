@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import blog, post, Comment
 
+# This is the serializer class that will be used to serialize the blog, post, and comment models
 class CommentSerializer(serializers.ModelSerializer):
     username = serializers.SerializerMethodField()
 
