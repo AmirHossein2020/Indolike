@@ -24,18 +24,16 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(posts, many=True)
         return Response(serializer.data)
     
-class CommentCreateView(generics.CreateAPIView):
+class CommentListCreateView(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
-    permission_classes = [IsAuthenticated]
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-    
-class CommentListView(generics.ListAPIView):
-    serializer_class = CommentSerializer
-    permission_classes = [permissions.AllowAny]  # همه می‌توانند ببینند
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         post_id = self.kwargs['post_id']
         return Comment.objects.filter(post_id=post_id).order_by('-date_created')
+
+    def perform_create(self, serializer):
+        post_id = self.kwargs['post_id']
+        serializer.save(user=self.request.user, post_id=post_id)
+
+    
