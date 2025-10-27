@@ -1,3 +1,8 @@
+
+
+https://github.com/user-attachments/assets/2412dae7-4846-49a5-a177-94df1b3ead17
+
+
 # 🎬 Cinema — Movie Ticket & Streaming Platform
 
 A full-featured web application for **buying movie tickets**, **streaming online films**, and **reading movie news**,  
